@@ -1,12 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS  Microsoft Visual Studio에서 제공하는 매크로로, 
-                                  C 런타임(CRT, C Runtime Library)에서 "안전하지 않은" 함수 사용에 대해 발생하는 보안 경고를 무시하도록 설정하는 지시문이다.
-#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS  
+- Microsoft Visual Studio에서 제공하는 매크로로, 
+  C 런타임(CRT, C Runtime Library)에서 "안전하지 않은" 함수 사용에 대해 발생하는 보안 경고를 무시하도록 설정하는 지시문이다. -ChatGPT-
 
-int main(void) {
-  int n;
-  scanf("%d", &n);  //window 환경에서 
-  scanf_s("%d", &n);
-  printf("%d", n);
 
-  retrun 0;
-}
