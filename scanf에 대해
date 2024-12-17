@@ -1,5 +1,74 @@
 #define _CRT_SECURE_NO_WARNINGS  
 - Microsoft Visual Studio에서 제공하는 매크로로, 
-  C 런타임(CRT, C Runtime Library)에서 "안전하지 않은" 함수 사용에 대해 발생하는 보안 경고를 무시하도록 설정하는 지시문이다. -ChatGPT-
+  C 런타임(CRT, C Runtime Library)에서 "안전하지 않은" 함수 사용에 대해 발생하는 보안 경고를 무시하도록 설정하는 지시문입니다. -ChatGPT-
+ㄴ> 
+
+- Microsoft Visual Studio 환경에서 scanf 함수를 사용하면 C6031 에러가 발생하므로 scanf 대신 scanf_s 함수를 사용하자!
+
+- scanf_s 함수
+  기본 사용법 : int scanf_s(const char *format, ...);
+    -format : 입력 형식 문자열 (예: %d, %s 등)
+    -... : 형식에 따라 입력 받을 변수의 주소.
+      문자열(%s) 또는 문자(%c) 형식을 사용할 경우, 추가로 버퍼 크기를 전달해야 합니다.
+
+주요 차이점 (scanf vs scanf_s)
+문자열 입력 시 버퍼 크기 전달 필요
+
+scanf: 버퍼 크기 전달 필요 없음.
+scanf_s: 반드시 버퍼 크기를 추가로 전달해야 함.
+보안 강화
+
+scanf: 입력 크기 제한이 없어 버퍼 오버플로우 가능.
+scanf_s: 입력 크기를 제한하여 오버플로우 방지.
+
+1. 정수 입력
+정수 입력의 경우, scanf와 scanf_s의 사용법은 동일합니다:
+
+#include <stdio.h>
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf_s("%d", &num); // 정수 입력
+    printf("You entered: %d\n", num);
+    return 0;
+}
+
+2. 문자열 입력
+문자열 입력의 경우, 버퍼 크기를 추가로 명시해야 합니다:
+
+#include <stdio.h>
+
+int main() {
+    char str[20];
+    printf("Enter a string: ");
+    scanf_s("%s", str, (unsigned int)sizeof(str)); // 버퍼 크기를 추가로 전달
+    printf("You entered: %s\n", str);
+    return 0;
+}
+주의: sizeof(str)로 버퍼 크기를 전달하며, unsigned int로 캐스팅해야 합니다.
+3. 문자 입력
+문자 입력에서도 버퍼 크기를 전달해야 합니다:
+
+#include <stdio.h>
+
+int main() {
+    char ch;
+    printf("Enter a character: ");
+    scanf_s("%c", &ch, 1); // 버퍼 크기로 1 전달
+    printf("You entered: %c\n", ch);
+    return 0;
+}
+버퍼 크기: 단일 문자의 경우, 항상 1을 전달합니다.
 
 
+주의사항
+  1.문자열이나 문자 외의 형식에는 버퍼 크기 전달 필요 없음
+    -정수, 실수 등의 입력은 추가 매개변수가 필요하지 않습니다.
+  2.버퍼 크기 초과 시 동작
+    -사용자가 버퍼 크기보다 긴 입력을 제공하면, 나머지 입력은 버려집니다.
+  3.Windows 환경 전용
+    -scanf_s는 Microsoft에서 제공하는 함수로, Windows 환경에서만 사용 가능합니다. 다른 플랫폼에서는 표준 scanf를 사용해야 합니다.
+요약
+  -scanf_s는 scanf와 비슷하지만, 문자열(%s)과 문자(%c) 입력에서 버퍼 크기를 명시해야 합니다.
+  -보안이 중요한 프로그램에서는 scanf_s를 사용하는 것이 권장됩니다.
