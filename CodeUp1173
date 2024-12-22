@@ -1,0 +1,33 @@
+//시간과 분을 입력받아 30분 전의 시간을 출력하는 프로그램입니다.
+#include <stdio.h>
+
+int main(void) {
+  int hour;  //시간 
+  int minute;  //분
+  
+//시간의 범위 0~23, 분의 범위 0~59
+  while (1) {
+    scanf("%d %d", &hour, &minute);
+    if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59) {
+      break;
+    }
+  }
+  
+//30분 빼기
+  minute -= 30;
+
+//분이 0보다 작다면 시간에서 1을 빼고 분을 60더한다.
+  if (minute < 0) {  
+    minute += 60;
+    hour--;
+  }
+
+//시간이 0보다 작다면 24를 더한다.
+  if (hour < 0) {
+    hour += 24;
+  }
+  
+//30분 전의 시간 출력
+  printf("%d %d \n", hour, minute);
+  return 0;
+}
