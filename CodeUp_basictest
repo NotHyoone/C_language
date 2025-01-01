@@ -32,3 +32,15 @@ int main(void){
   
   return 0;
 }
+
+//문장 1개 입력받아 그대로 출력하는 프로그램이다.
+#include <stdio.h>
+
+int main(void){
+  char data[2001];
+
+  fgets(data, 2000, stdin);  // 공백이 포함된 문장을 키보드(stdin)로 입력받아 최대 2000자까찌 data[] 공간에 저장할 수 있다.
+  printf("%s", data);  // %s 는 문자열(string)로 출력하라는 의미다.
+  
+  return 0;
+}
