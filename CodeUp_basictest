@@ -20,3 +20,15 @@ int main(void){
   
   return 0;
 }
+
+//단어 1개 입력받아 그대로 출력하는 프로그램입니다.
+#include <stdio.h>
+
+int main(void){
+  char data[51] = "";  // 단어의 길이가 50자 이하기 때문에 char data[51] 로 선언함.
+
+  scanf("%s", data);  // 문자 입력에는 "&" 기호를 안 써도 된다. 
+  printf("%s", data);
+  
+  return 0;
+}
