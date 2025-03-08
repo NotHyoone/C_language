@@ -15,3 +15,114 @@ int main() {
 
 	return 0;
 }
+
+
+# BAEKHOON 1152
+# str = input().split()
+# print(len(str))
+
+# 임의의 값 n을 입력해 주었을 때 그 값이 소수인지 아닌지 판별하는 함수를 만들어보자
+
+# # 소수 판별 함수
+# def is_prime(n):
+#     if n < 2:
+#         return False
+#     if n == 2:
+#         return True
+#     elif n % 2 == 0:    # 2를 제외한 짝수 제거
+#         return False
+#     # for i in range(2, n):
+#     #     if n % i == 0:  # 나머지 없음 == 나누어 떨어짐
+#     #         return False    # 소수가 아님
+#     # return True
+#
+#     for i in range(3, n, 2):
+#         if n % i == 0:
+#             return False
+#
+# print(is_prime(2))
+# print(is_prime(3))
+# print(is_prime(6))
+
+
+# # 알고리즘 개선(메모리 아끼기)
+# import math
+#
+# # 소수 판별 함수
+# def is_prime(n):
+#     # 2부터 n의 제곱근까지의 모든 수를 확인하며
+#     for i in range(2, int(math.sqrt(n)) + 1):
+#         # n이 해당 수로 나누어 떨어진다면
+#         if n % i == 0:
+#             return False    # 소수가 아님
+#     return True
+#
+# print(is_prime(2))
+# print(is_prime(3))
+# print(is_prime(6))
+
+
+# 10950번
+# import sys
+#
+# T = int(input())
+# total = []
+#
+# for i in range(T):
+#     a, b = map(int , sys.stdin.readline().split())
+#     total.append(a+b)
+#
+# for i in range(T):
+#     print(int(total[i]))
+
+
+# 10952번
+# import sys
+#
+# total = []
+#
+# count = 0   # While 반복문 도는 횟수
+# while True:
+#     a, b = map(int,sys.stdin.readline().split())
+#     if a == 0 and b == 0:
+#         break
+#     count += 1
+#     total.append(a+b)
+#
+# for i in range(count):
+#     print(total[i])
+
+
+# 25304번
+# import sys
+#
+# total_price = int(input()) # 입력받는 가격
+# kind = int(input()) # 입력받는 물건의 종류
+#
+# price_li = []   # 상품 가격
+# number_li = []  # 상품 개수
+# price_star_number = []  # 상품 n개의 가격
+#
+# for i in range(kind):
+#     price, number = map(int, sys.stdin.readline().split())
+#     price_star_number.append(price * number)
+#
+# if sum(price_star_number) == total_price:
+#     print("Yes")
+# else:
+#     print("No")
+
+
+# 33557번 - 푸는 중
+import sys
+
+T = int(input()) # 테스트 케이스 입력
+
+
+for i in range(T):
+    # A, B 변수를 한 줄에 int 형으로 입력받기
+    A, B = map(int, sys.stdin.readline().split())
+
+    # 각 수의 일의 자리수부터 각각 곱한다
+    # 결과를 역순으로 나열한다.???
+    # 그 후 잘못된 곱셈과 비교한다.
